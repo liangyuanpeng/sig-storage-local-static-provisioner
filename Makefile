@@ -56,6 +56,9 @@ release:
 	./hack/release.sh
 .PHONY: release
 
+image-local-build:
+	echo "hello"
+
 # used in `make test` and `make e2e`
 # builds without pushing to the registry
 build-container-linux-%:

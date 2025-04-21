@@ -1,0 +1,28 @@
+# Reference from:
+# https://github.com/c-bata/go-prompt/blob/master/.github/workflows/test.yml
+name: image
+on:
+  push:
+    branches:
+     - image
+
+jobs:
+
+  Build:
+    name: test build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - name: Setup QEMU
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: linux/amd64,linux/arm64
+      - run: |
+          make image-local-build 
